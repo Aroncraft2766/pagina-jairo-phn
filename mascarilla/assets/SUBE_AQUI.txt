@@ -1,0 +1,15 @@
+═══════════════════════════════════════════════
+  MASCARILLA PHN — Archivos que van en esta carpeta
+═══════════════════════════════════════════════
+
+  galeria-1.webp   ← imagen principal del producto (800×800 px) — OBLIGATORIA
+  galeria-2.webp   ← ángulo 2 (opcional)
+  galeria-3.webp   ← ángulo 3 (opcional)
+  galeria-4.webp   ← ángulo 4 (opcional)
+  banner.webp      ← imagen lifestyle / modelo (2400×600 px) — opcional
+  video.mp4        ← video del producto — opcional
+
+Imágenes disponibles en el proyecto (copia y renombra):
+  banner-MASCARILLA.webp         → galeria-1.webp
+  banner-MASCARILLA-modelo.webp  → banner.webp
+  productos/gallery/MASCARILLA/  → galeria-2, 3, 4

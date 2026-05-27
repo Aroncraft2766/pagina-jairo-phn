@@ -1,0 +1,32 @@
+═══════════════════════════════════════════════
+  F.VIT GEL — Archivos que van en esta carpeta
+═══════════════════════════════════════════════
+
+Pon aquí los siguientes archivos:
+
+  galeria-1.webp   ← imagen principal del producto (800×800 px) — OBLIGATORIA
+  galeria-2.webp   ← ángulo 2 del producto (400×400 px) — opcional
+  galeria-3.webp   ← ángulo 3 del producto (400×400 px) — opcional
+  galeria-4.webp   ← ángulo 4 del producto (400×400 px) — opcional
+
+  banner.webp      ← imagen lifestyle/modelo (2400×600 px) — opcional
+                     aparece como banda horizontal debajo del producto
+
+  video.mp4        ← video del producto — opcional
+                     la sección de video se oculta si no lo pones
+
+IMPORTANTE:
+  - Los nombres deben ser exactamente esos (con guión, en minúsculas)
+  - Formato: .webp para imágenes, .mp4 para video
+  - Si galeria-1.webp no existe, se muestra el logo PHN como placeholder
+
+Imagen actual disponible en el proyecto:
+  Copia desde: pagina jairo/productos/banners/banner-FVIT-GEL.webp
+  Pégala como: galeria-1.webp
+
+  Copia desde: pagina jairo/productos/banners/banner-FVIT-GEL-modelo.webp (con modelo)
+  Pégala como: banner.webp
+
+  Galería (ángulos del producto):
+  Copia desde: pagina jairo/productos/gallery/F.VIT-GEL/*.webp
+  Pégalas como: galeria-2.webp, galeria-3.webp, galeria-4.webp
