@@ -24,3 +24,9 @@ Dior MX_files/*
 !Dior MX_files/*.woff2
 !Dior MX_files/*.svg
 Dior MX.html
+
+.vercel
+
+# Artefactos de pruebas / editor
+.playwright-mcp/
+*.code-workspace

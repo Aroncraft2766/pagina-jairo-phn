@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mi carrito — PHN Cosmetics</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    body { margin: 0; font-family: 'Lato', -apple-system, sans-serif; color: #181818; background: #fafafa; }
+    img { display: block; max-width: 100%; }
+    a { color: inherit; }
+    /* Navbar */
+    #phn-nav { position: sticky; top: 0; z-index: 200; background: #fff; border-bottom: 1px solid #e5e5e5; box-shadow: 0 2px 8px rgba(0,0,0,.06); }
+    .phn-nav-inner { max-width: 1300px; margin: 0 auto; padding: 0 24px; height: 64px; display: flex; align-items: center; gap: 16px; }
+    .phn-nav-logo img { height: 44px; width: auto; object-fit: contain; }
+    .phn-nav-links { flex: 1; display: flex; align-items: center; gap: 2px; margin-left: 12px; }
+    .phn-nav-links a { padding: 8px 13px; font-size: 1.02rem; font-weight: 600; color: #1a1a1a; text-decoration: none; border-radius: 6px; }
+    .phn-nav-links a:hover { background: #f2f9ed; }
+    /* Carrito */
+    .wrap { max-width: 760px; margin: 0 auto; padding: 32px 20px 80px; }
+    .wrap h1 { font-size: 1.8rem; font-weight: 900; margin: 0 0 24px; }
+    .item { display: flex; align-items: center; gap: 16px; background: #fff; border: 1px solid #eee; border-radius: 10px; padding: 14px; margin-bottom: 12px; }
+    .item__img { width: 72px; height: 72px; object-fit: contain; background: #f5f5f5; border-radius: 8px; flex-shrink: 0; }
+    .item__info { flex: 1; min-width: 0; }
+    .item__nom { font-size: 1rem; font-weight: 700; margin: 0 0 4px; }
+    .item__prec { font-size: .92rem; color: #70B62F; font-weight: 700; }
+    .item__ctrl { display: flex; align-items: center; gap: 8px; }
+    .qbtn { width: 30px; height: 30px; border: 1px solid #ddd; background: #fff; border-radius: 6px; font-size: 1.1rem; cursor: pointer; line-height: 1; }
+    .qbtn:hover { border-color: #70B62F; }
+    .qty { min-width: 22px; text-align: center; font-weight: 700; }
+    .del { background: none; border: none; color: #999; cursor: pointer; font-size: 1.2rem; padding: 4px 8px; }
+    .del:hover { color: #c0392b; }
+    .vacio { text-align: center; color: #888; padding: 60px 0; }
+    .vacio a { color: #70B62F; font-weight: 700; }
+    .resumen { background: #fff; border: 1px solid #eee; border-radius: 10px; padding: 20px; margin-top: 16px; }
+    .resumen__total { display: flex; justify-content: space-between; font-size: 1.3rem; font-weight: 900; margin-bottom: 16px; }
+    .pedir { display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; padding: 16px; background: #25d366; color: #fff; border: none; border-radius: 8px; font-size: 1.05rem; font-weight: 700; cursor: pointer; font-family: inherit; text-decoration: none; }
+    .pedir:hover { background: #128c7e; }
+    .pedir svg { width: 22px; height: 22px; fill: currentColor; }
+  </style>
+</head>
+<body>
+<header id="phn-nav">
+  <div class="phn-nav-inner">
+    <a href="index.html" class="phn-nav-logo"><img src="assets/Logo.png" alt="PHN Cosmetics" onerror="this.style.display='none';" /></a>
+    <nav class="phn-nav-links">
+      <a href="index.html">Inicio</a>
+      <a href="productos.html">Productos</a>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap">
+  <h1>Mi carrito</h1>
+  <div id="cart-list"></div>
+  <div id="cart-resumen"></div>
+</div>
+
+<script src="productos/data.js"></script>
+<script>
+var WA_NUMBER = '5217773460478';
+
+function getCart() { try { return JSON.parse(localStorage.getItem('phn-cart') || '[]'); } catch(e){ return []; } }
+function saveCart(c) { localStorage.setItem('phn-cart', JSON.stringify(c)); render(); }
+function priceNum(s) { return parseInt(String(s||'').replace(/[^0-9]/g,'')) || 0; }
+function nombreDe(code) { return (typeof PHN_CATALOG !== 'undefined' && PHN_CATALOG[code] && PHN_CATALOG[code].nombre) || code; }
+
+function render() {
+  var cart = getCart();
+  var list = document.getElementById('cart-list');
+  var resumen = document.getElementById('cart-resumen');
+  if (!cart.length) {
+    list.innerHTML = '<div class="vacio">Tu carrito está vacío.<br><br><a href="productos.html">Ver productos</a></div>';
+    resumen.innerHTML = '';
+    return;
+  }
+  list.innerHTML = cart.map(function(it, i){
+    var sub = priceNum(it.price) * it.qty;
+    return '<div class="item">'
+      + '<img class="item__img" src="' + it.img + '" alt="" onerror="this.style.visibility=\'hidden\'">'
+      + '<div class="item__info"><p class="item__nom">' + nombreDe(it.name) + '</p>'
+      + '<span class="item__prec">' + (it.price || '') + (sub ? '  ·  Subtotal $' + sub.toLocaleString('es-MX') : '') + '</span></div>'
+      + '<div class="item__ctrl">'
+      + '<button class="qbtn" data-a="menos" data-i="' + i + '">−</button>'
+      + '<span class="qty">' + it.qty + '</span>'
+      + '<button class="qbtn" data-a="mas" data-i="' + i + '">+</button>'
+      + '<button class="del" data-a="del" data-i="' + i + '">✕</button>'
+      + '</div></div>';
+  }).join('');
+
+  var total = cart.reduce(function(s, it){ return s + priceNum(it.price) * it.qty; }, 0);
+  var lineas = cart.map(function(it){ return '• ' + nombreDe(it.name) + ' ×' + it.qty; }).join('\n');
+  var msg = '¡Hola! Me gustaría hacer el siguiente pedido a *PHN Cosmetics*:\n\n' + lineas
+    + (total ? '\n\n💰 *Total estimado: $' + total.toLocaleString('es-MX') + '*' : '')
+    + '\n\n¿Me confirman disponibilidad y forma de pago? ¡Gracias!';
+  resumen.innerHTML = '<div class="resumen">'
+    + '<div class="resumen__total"><span>Total</span><span>$' + total.toLocaleString('es-MX') + '</span></div>'
+    + '<a class="pedir" target="_blank" rel="noopener" href="https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(msg) + '">'
+    + '<svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>'
+    + 'Pedir por WhatsApp</a></div>';
+}
+
+document.addEventListener('click', function(e){
+  var btn = e.target.closest('[data-a]');
+  if (!btn) return;
+  var i = parseInt(btn.dataset.i), a = btn.dataset.a;
+  var cart = getCart();
+  if (!cart[i]) return;
+  if (a === 'mas') cart[i].qty += 1;
+  if (a === 'menos') cart[i].qty = Math.max(1, cart[i].qty - 1);
+  if (a === 'del') cart.splice(i, 1);
+  saveCart(cart);
+});
+
+render();
+</script>
+</body>
+</html>

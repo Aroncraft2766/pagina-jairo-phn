@@ -71,7 +71,7 @@ window.PRODUCTO = {
   descripcionCorta: "Frase corta...",             // debajo del nombre
   descripcionLarga: "Párrafo 1.\n\nPárrafo 2.",  // texto largo (\n\n = separar párrafos)
   videoTitulo:      "Conoce el producto",         // título sobre el video
-  whatsappNumero:   "527775710124",               // número sin + ni espacios
+  whatsappNumero:   "5217773460478",               // número sin + ni espacios
   mensajes: [
     { etiqueta: "1 unidad",   mensaje: "Hola, quiero comprar..." },
     { etiqueta: "2 unidades", mensaje: "Hola, quiero comprar..." },

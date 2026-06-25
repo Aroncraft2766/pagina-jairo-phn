@@ -28,7 +28,7 @@ window.PRODUCTO = {
 
   videoTitulo: "Descubre COLÁGENO 50/50",
 
-  whatsappNumero: "527775710124",
+  whatsappNumero: "5217773460478",
   mensajes: [
     { etiqueta: "1 unidad",   mensaje: "Hola, quiero comprar 1 COLÁGENO 50/50 ($300). ¿Me puedes dar más información?" },
     { etiqueta: "2 unidades", mensaje: "Hola, quiero comprar 2 COLÁGENO 50/50 ($300 c/u). ¿Me puedes dar más información?" },

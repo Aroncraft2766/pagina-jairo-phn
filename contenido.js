@@ -141,7 +141,7 @@ const TEXTO = {
 
   // ── FOOTER ───────────────────────────────────────────────────
   footer_marca: "Cosmetics",
-  footer_texto:  "© 2026 PHN Cosmetics · Tel. 777 571 0124 · Todos los derechos reservados.",
+  footer_texto:  "© 2026 PHN Cosmetics · Tel. 777 346 0478 · Todos los derechos reservados.",
 
 
   // ── CARRITO — número de WhatsApp para enviar el pedido ───────
@@ -185,8 +185,8 @@ document.addEventListener("DOMContentLoaded", function () {
   set("descripcion", T.descripcion);
 
   set("banner-etiqueta", T.banner_etiqueta);
-  document.getElementById("banner-titulo").innerHTML =
-    T.banner_titulo.replace("\n", "<br>");
+  var bannerTit = document.getElementById("banner-titulo");
+  if (bannerTit) bannerTit.innerHTML = T.banner_titulo.replace("\n", "<br>");
 
   set("stat1-etiqueta",    T.stat1_etiqueta);
   set("stat1-titulo",      T.stat1_titulo);

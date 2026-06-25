@@ -39,7 +39,7 @@ window.PRODUCTO = {
   // ──────────────────────────────────────────────
   // WHATSAPP
   // ──────────────────────────────────────────────
-  whatsappNumero: "527775710124",   // código de país + número, sin + ni espacios
+  whatsappNumero: "5217773460478",   // código de país + número, sin + ni espacios
 
   mensajes: [
     { etiqueta: "1 unidad",   mensaje: "Hola, quiero comprar 1 F.VIT GEL ($250). ¿Me puedes dar más información?" },
